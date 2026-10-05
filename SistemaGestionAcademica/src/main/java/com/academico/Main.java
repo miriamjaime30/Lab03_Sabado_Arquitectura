@@ -3,6 +3,7 @@ import com.academico.application.CursoService;
 import com.academico.domain.repository.CursoRepository;
 import com.academico.infrastructure.persistence.CursoRepositoryJson;
 import com.academico.infrastructure.persistence.EstudianteRepositoryJson;
+import com.academico.infrastructure.persistence.EstudianteRepositoryMySQL;
 import com.academico.presentation.EstudianteUI;
 import com.academico.presentation.CursoUI;
 //agregar
@@ -16,11 +17,12 @@ public class Main {
     public static void main(String[] args) {
         //agregar
         // infraestructura
-        EstudianteRepository repository=new EstudianteRepositoryJson();
+        //EstudianteRepository repository=new EstudianteRepositoryJson();
+        EstudianteRepository estudianteRepository= new EstudianteRepositoryMySQL();
         CursoRepository cursoRepository =new CursoRepositoryJson();
 
         //aplicacion
-        EstudianteService service=new EstudianteService(repository);
+        EstudianteService service=new EstudianteService(estudianteRepository);
         CursoService cursoService = new CursoService(cursoRepository);
 
         // presentacion
