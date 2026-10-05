@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface CursoRepository {
     List<Curso> listar();
-    void guardar(List<Curso> cursos);
+    void guardar(List<Curso> curso);
 
 }
