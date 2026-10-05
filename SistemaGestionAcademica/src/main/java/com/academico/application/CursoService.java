@@ -1,7 +1,7 @@
 package com.academico.application;
 
 import com.academico.domain.model.Curso;
-import com.academico.infrastructure.CursoRepository;
+import com.academico.domain.repository.CursoRepository;
 
 import java.util.List;
 
@@ -9,8 +9,8 @@ public class CursoService {
 
     private final CursoRepository repository;
 
-    public CursoService() {
-        repository = new CursoRepository();
+    public CursoService(CursoRepository repository){
+        this.repository = repository;
     }
 
     public void registrar(Curso curso) {
@@ -33,10 +33,8 @@ public class CursoService {
         for (Curso c : cursos) {
 
             if (c.getId() == curso.getId()) {
-
                 c.setNombre(curso.getNombre());
                 c.setCreditos(curso.getCreditos());
-
                 repository.guardar(cursos);
 
                 return true;
@@ -47,7 +45,6 @@ public class CursoService {
     }
 
     public boolean eliminar(int id) {
-
         List<Curso> cursos = repository.listar();
 
         boolean eliminado = cursos.removeIf(c -> c.getId() == id);
