@@ -1,4 +1,7 @@
 package com.academico;
+import com.academico.application.CursoService;
+import com.academico.domain.repository.CursoRepository;
+import com.academico.infrastructure.persistence.CursoRepositoryJson;
 import com.academico.infrastructure.persistence.EstudianteRepositoryJson;
 import com.academico.presentation.EstudianteUI;
 import com.academico.presentation.CursoUI;
@@ -14,13 +17,15 @@ public class Main {
         //agregar
         // infraestructura
         EstudianteRepository repository=new EstudianteRepositoryJson();
+        CursoRepository cursoRepository =new CursoRepositoryJson();
 
         //aplicacion
         EstudianteService service=new EstudianteService(repository);
+        CursoService cursoService = new CursoService(cursoRepository);
 
         // presentacion
         EstudianteUI estudianteUI=new EstudianteUI(service);
-
+        CursoUI cursoUI =new CursoUI(cursoService);
 
         Scanner sc = new Scanner(System.in);
 
@@ -43,7 +48,7 @@ public class Main {
                     break;
 
                 case 2:
-                   // CursoUI.mostrarMenu(sc);
+                    cursoUI.mostrarMenu(sc);
                     break;
 
                 case 0:
